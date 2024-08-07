@@ -33,10 +33,10 @@ class PostSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.is_authenticated:
             like = Like.objects.filter(
-                owner=user, post=obj.owner
+                owner=user, post=obj
             ).first()
 
-            return following.id if following else None
+            return like.id if like else None
         return None
 
 
